@@ -1,0 +1,193 @@
+{% extends 'home/base.html' %}
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/resources.css' %}">
+
+    <div id="redirect-background1"></div>
+    <div id="redirect-background2"></div>
+    <div class="container">
+        <div class="banner">
+            <img src="{% static 'images/banner.jpg' %}" alt="" style="width:100vw;">
+        </div>
+        <div class="navbar-container">
+            <ul class="navbar">
+                <div class="menu-dropdown">
+                    <li id="navbar-li-menu" ><img src="{% static 'images/arrow_nav.png' %}" alt="">MENU</li>
+                    <ul>
+                        <li class="title-dropdown-father"><a href="{% static './home.html' %}">HOME</a></li>
+                        <li class="title-dropdown-father"><a href="{% static './books.html' %}">BOOKS</a>
+                            <ul class="title-dropdown">
+                                <li><a href="{% static './bookdetail.html' %}">GRIMM BOOKS</a>
+                                    <ul>
+                                        <li><a href="{% static './bookdetail.html' }}">A TALE DARK AND GRIMM</a></li>
+                                        <li><a href="{% static './bookdetail.html' %}">IN A GLASS GRIMMLY</a></li>
+                                        <li><a href="{% static './bookdetail.html' %}">THE GRIMM CONCLUSION</a></li>
+                                        <li><a href="{% static './news&announcement.html' %}">REVIEWS</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="{% static './bookdetail.html' %}">STAR WARS BOOKS</a></li>
+                                <li><a href="{% static './bookdetail.html' %}">THE INQUISITOR'S TALE</a>
+                                    <ul>
+                                        <li><a href="#">REVIEWS</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="{% static './bookdetail.html' %}">THE UNICORN RESCUE SOCIETY</a></li>
+                            </ul>
+                        </li>
+                        <li class="title-dropdown-father"><a href="{% static './videos&photos.html' %}">VIDEOS & PHOTOS</a>
+                            <ul class="title-dropdown">
+                                <li><a href="{% static './videos&photos.html' %}">VIDEOS</a></li>
+                                <li><a href="{% static './photos.html' %}">PHOTO GALLERY</a></li>
+                            </ul>
+                        </li>
+                        <li class="title-dropdown-father"><a href="{% static './findadam.html' %}">FIND ADAM!</a></li>
+                        <li class="title-dropdown-father"><a href="{% static './resources.html' %}">RESOURCES</a>
+                            <ul class="title-dropdown">
+                                <li><a href="{% static './books-sort.html' %}">GRIMM BOOKS</a></li>
+                                <li><a href="{% static './books-sort.html' %}">THE INQUISITOR'S TALE</a></li>
+                                <li><a href="{% static './books-sort.html' %}">UNICORN RESCUE SOCIETY</a></li>
+                            </ul>
+                        </li>
+                        <li class="title-dropdown-father"><a href="{% static './news&announcement.html' %}">NEWS & ANNOUNCEMENTS</a></li>
+                        <li class="title-dropdown-father"><a href="{% static './about.html' %}">ABOUT ADAM</a></li>
+                        <li class="title-dropdown-father"><a href="{% static './writeadam.html' %}">WRITE TO ADAM</a></li>
+                    </ul>
+                </div>
+                <li class="navbar-li" ><img src="{% static './images/arrow_nav.png' %}" alt=""><a href="{% static './home.html' %}">HOME</a></li>
+                <li class="navbar-li">
+                    <img src="{% static './images/arrow_nav.png' %}" alt="">
+                    <a href="{% static './books.html' %}">BOOKS</a>
+                    <ul id="navbar-li-ul1">
+                        <li><a href="{% static './books-sort.html' %}">GRIMM BOOKS</a></li>
+                        <li><a href="">STAR WARS BOOKS</a></li>
+                        <li><a href="">THE INQUISITOR’S TALE</a></li>
+                        <li><a href="">THE UNICORN RESCUE SOCIETY</a></li>
+                    </ul>
+                </li>
+                <li class="navbar-li">
+                    <img src="{% static './images/arrow_nav.png' %}" alt="">
+                    <a href="{% static './videos&photos.html' %}">VIDEOS & PHOTOS</a>
+                    <ul id="navbar-li-ul2">
+                        <li><a href="{% static './videos&photos.html' %}">VIDEOS</a></li>
+                        <li><a href="{% static './photos.html' %}">PHOTO GALLERY</a></li>
+                    </ul>
+                </li>
+                <li class="navbar-li"><img src="{% static './images/arrow_nav.png' %}" alt=""><a href="{% static './findadam.html' %}">FIND ADAM!</a></li>
+                <li class="navbar-li active">
+                    <img src="{% static './images/arrow_nav.png' %}" alt="">
+                    <a href="{% static './resources.html' %}">RESOURCES</a>
+                    <ul id="navbar-li-ul3">
+                        <li><a href="{% static './books-sort.html' %}">GRIMM BOOKS</a></li>
+                        <li><a href="">THE INQUISITOR’S TALE</a></li>
+                        <li><a href="">UNICORN RESCUE SOCIETY</a></li>
+                    </ul>
+                </li>
+                <li class="navbar-li"><img src="{% static './images/arrow_nav.png' %}" alt=""><a href="{% static './news&announcement.html' %}">NEWS & ANNOUNCEMENTS</a></li>
+                <li class="navbar-li "><img src="{% static './images/arrow_nav.png' %}" alt=""><a href="{% static './about.html' %}">ABOUT ADAM</a></li>
+                <li class="navbar-li"><img src="{% static './images/arrow_nav.png' %}" alt=""><a href="{% static './writeadam.html' %}">WRITE TO ADAM</a></li>
+                <li class="navbar-li" ><img src="{% static './images/arrow_nav.png' %}" alt=""><a href="{% static './login.html' %}">LOG OUT</a></li>
+
+            </ul>
+        </div>
+        <div class="author">
+            <h1 style="font-family: Chez Moustache;">Resources</h1>
+        </div>
+       
+        <div class="books-content">
+            <div class="books-content-bkg">
+                <img src="https://www.adamgidwitz.com/wp-content/themes/adam_gidwitz/images/interior_content_left.png" alt="">
+                <img src="https://www.adamgidwitz.com/wp-content/themes/adam_gidwitz/images/interior_content_right.png" alt="">
+            </div>
+            <div class="introduction">
+                <div class="all-box">
+                    <div class="box">
+                        <img src="{% static 'images/news_feed_header.png' %}" alt="">
+                        <div class="mar">
+                            <div class="day-box">
+                                <p style="font-family: 'Open Sans Condensed', sans-serif;">MAR</p>
+                                <p style="font-family: 'Open Sans Condensed', sans-serif;">13</p>
+                            </div>
+                            <p>
+                                <a href="">
+                                    <b>WALL STREET JOURNAL REVIEW: MAX IN THE HOUSE OF SPIES</b>
+                                </a>
+                                <a href="">
+                                    ... <b>READ MORE »</b>
+                                </a>
+                            </p>
+                        </div>
+                        <div class="mar">
+                            <div class="day-box">
+                                <p style="font-family: 'Open Sans Condensed', sans-serif;">MAR</p>
+                                <p style="font-family: 'Open Sans Condensed', sans-serif;">05</p>
+                            </div>
+                            <p>
+                                <a href="">
+                                    <b>MAX IN THE HOUSE OF SPIES - AN INSTANT NYTIMES BESTSELLER!</b>
+                                </a>
+                                <a href="">
+                                    ... <b>READ MORE »</b>
+                                </a>
+                            </p>
+                        </div>
+                        <div class="much-more">
+                            <p style="font-family: 'Open Sans Condensed', sans-serif;"><b>MUCH MORE</b></p>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <img src="{% static 'images/events_header.png' %}" alt="">
+                        <p style="padding-bottom: 270px;">There are no upcoming events at this time</p>
+
+                    </div>
+                    <div class="box">
+                        <img src="{% static 'images/newsletter_header.png' %}" alt="">
+                        <div class="form-signup">
+                            <p>Sign up for Adam's newsletter by entering your info below:</p>
+                            <form action="">
+                                <input type="text" placeholder="Email Address"><input type="text" placeholder="First Name"><input type="text" placeholder="Last Name">
+                                <button>SIGN ME UP&nbsp;&nbsp;&nbsp;</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="book-list">
+            <div class="book">
+                <img src="{% static 'images/UnicornRescueSociety_EducatorsGuide-cover-232x300.jpg' %}" alt="" class="book-image">
+                <p><a href="#">Click here</a> for an Educator’s Guide to The Unicorn Rescue Society</p>
+            </div>
+            <div class="space"></div>
+            <!-- <div class="book">
+                <img src="{% static 'images/TaleDarkGrimm_Front-196x300.jpg' %}" alt="">
+                <p><a href="#">Click here</a> for an Educator’s Guide to A Tale Dark & Grimm</p>
+            </div>
+            <div class="space"></div>
+            <div class="book">
+                <img src="{% static 'images/the_inquisitors_tale_cover-199x300.jpg' %}" alt="">
+                <p><a href="#">Click here</a> for an Educator’s Guide to The Inquisitor’s Tale</p>
+            </div> -->
+        </div>
+        <div class="content"></div>
+        <div class="footer">
+            <div class="footer-image">
+                <img src="{% static 'images/footer_left.png' %}" alt=""><img src="{% static 'images/footer_right.png' %}" alt="">
+            </div>
+            <div class="footer-content">
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">Books</a></li>
+                    <li><a href="">Videos & Photos</a></li>
+                    <li><a href="">Find Adam!</a></li>
+                    <li><a href="">Resources</a></li>
+                    <li><a href="">News & Announcements</a></li>
+                    <li><a href="">About Adam</a></li>
+                    <li><a href="">Write To Adam</a></li>
+                </ul>
+                <p><b>©2024 Adam Gidwitz | All awesome artwork ©2024 HUGH D’ANDRADE</b></p>
+            </div>
+        </div>
+            
+    </div>
+ {% endblock content %}
