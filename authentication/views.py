@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import SignUpForms
 from django.contrib.auth import authenticate, login,logout
+from django.contrib.auth.models import User
 # Create your views here.
 def signin(request):
     if request.method == "POST":
@@ -28,3 +29,8 @@ def signup(request):
             form.save()
             return redirect("auth:signin")
     return render(request,"authentication/register.html")
+
+def signout(request):
+    user = User.objects.get(username = request.user.username)
+    logout(user)
+    return redirect("auth:signin")
