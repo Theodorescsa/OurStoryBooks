@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    var currentUrl = window.location.href;
+    console.log("Current URL: " + currentUrl);
     var newWindowWidth = $(window).width();
     var newWindowHeight = $(window).height();
     $('#navbar-li-ul1').css("left", `${newWindowWidth * 0.18}px`);  
@@ -46,5 +48,20 @@ $(document).ready(function () {
     $("#navbar-li-menu").on("click", function () {
         $(this).siblings("ul").slideToggle(1000);
     });
-    
+    console.log($(".navbar-li"))
+    let parts = currentUrl.split('/');
+    let targetPart = parts[parts.length - 2];
+    console.log(targetPart);
+    switch (targetPart) {
+        case "":
+            $(".navbar-li").removeClass("active")
+            $("#home").addClass("active");
+            break;
+        case "books":
+            $(".navbar-li").removeClass("active")
+            $("#books").addClass("active");
+            break;
+        default:
+            break;
+    }
 });

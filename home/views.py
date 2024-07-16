@@ -4,12 +4,14 @@ from rest_framework import status
 from rest_framework.response import Response
 from. serializers import BookSerializers
 from .models import BookModel
+from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 def home(request):
     return render(request,"home/home.html")
 def list_books(request):
     return render(request,"home/books.html")
 @api_view(["GET","POST"])
+@permission_classes([IsAuthenticated])  # Yêu cầu xác thực JWT
 def get_post_book_api(request):
     if request.method == "GET":
         model = BookModel.objects.all()
@@ -23,7 +25,7 @@ def get_post_book_api(request):
             return redirect("home:list_books")
 
 @api_view(["GET", "PUT", "DELETE"])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def get_put_delete_api(request, id):
     model = get_object_or_404(BookModel, id=id)
 
