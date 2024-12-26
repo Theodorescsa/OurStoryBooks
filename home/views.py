@@ -5,11 +5,50 @@ from rest_framework.response import Response
 from. serializers import BookSerializers
 from .models import BookModel
 from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth.models import User
 # Create your views here.
-def home(request):
-    return render(request,"home/home.html")
-def list_books(request):
-    return render(request,"home/books.html")
+def home_page(request):
+    # user = User.objects.get(username = request.user.username)
+    books = BookModel.objects.all()
+    context = {
+        'books':books
+    }
+    return render(request,"home/home.html",context)
+
+def list_books_page(request):
+    books = BookModel.objects.all()
+    context = {
+        'books':books
+    }
+    return render(request,"home/books.html",context)
+
+def book_detail_page(request,id):
+    book = BookModel.objects.get(id=id)
+    context = {
+        'book':book
+    }
+    return render(request,"home/bookdetail.html",context)
+
+def videos_and_photos_page(request):
+    return render(request,'home/videos_and_photos.html')
+
+def photos_page(request):
+    return render(request,'home/photos.html')
+
+def find_adam_page(request):
+    return render(request,'home/findadam.html')
+
+def resources_page(request):
+    return render(request,'home/resources.html')
+
+def news_announ_page(request):
+    return render(request,'home/news_announcement.html')
+
+def about_page(request):
+    return render(request,'home/about.html')
+
+def write_adam_page(request):
+    return render(request,'home/writeadam.html')
 @api_view(["GET","POST"])
 @permission_classes([IsAuthenticated])  # Yêu cầu xác thực JWT
 def get_post_book_api(request):

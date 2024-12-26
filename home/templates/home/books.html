@@ -20,51 +20,11 @@
                 <img src="{% static 'images/bookbkgleft.png' %}" alt="">
                 <img src="{% static 'images/bookbkgright.png' %}" alt="">
                 <div class="books">
-                    <a href="./bookdetail.html" class="grimm">
-                        <img src="{% static 'images/books/GrimmConclusion_Front.jpg' %}" alt="">
+                    {% for book in books %}
+                    <a href="{% url 'home:book_detail' book.id %}" class="grimm">
+                        <img src="{{book.book_image.url}}" alt="">
                     </a>
-                    {% comment %} <a href="./bookdetail.html" class="grimm">
-                        <img src="{% static 'images/books/InGlassGrimmly_Front.jpg' %}" alt="">
-                    </a>
-                    <a href="./bookdetail.html" class="grimm">
-                        <img src="{% static 'images/books/TaleDarkGrimm_Front.jpg' %}" alt="">
-                    </a>
-                    <a href="./bookdetail.html" class="starwar">
-                        <img src="{% static 'images/books/Sasquatch-URS-4-higher-res-cover-196x300.png' %}" alt="">
-                    </a>
-                    <a href="./bookdetail.html" class="starwar">
-                        <img src="{% static 'images/books/star_wars2-199x300.png' %}" alt="">
-                    </a>
-                    <a href="./bookdetail.html" class="starwar">
-                        <img src="{% static 'images/books/madre-de-aguas-of-cuba-cover-urs-5-199x300.jpg' %}" alt="">
-                    </a>
-                    <a href="./bookdetail.html" class="inquisitor">
-                        <img src="{% static 'images/books/urs-1-new-good-196x300.jpeg' %}" alt="">
-                    </a>
-                    <a href="./bookdetail.html" class="inquisitor">
-                        <img src="{% static 'images/books/urs-2-new-good-196x300.jpeg' %}" alt="">
-                    </a>
-                    <a href="./bookdetail.html" class="inquisitor">
-                        <img src="{% static 'images/books/urs-2-new-good-196x300.jpeg' %}" alt="">
-                    </a>
-                    <a href="./bookdetail.html" class="inquisitor">
-                        <img src="{% static 'images/books/urs-4-new-good-196x300.jpeg' %}" alt="">
-                    </a>
-                    <a href="./bookdetail.html" class="grimm">
-                        <img src="{% static 'images/books/GrimmConclusion_Front.jpg' %}" alt="">
-                    </a>
-                    <a href="./bookdetail.html" class="grimm">
-                        <img src="{% static 'images/books/InGlassGrimmly_Front.jpg' %}" alt="">
-                    </a>
-                    <a href="./bookdetail.html" class="grimm">
-                        <img src="{% static 'images/books/TaleDarkGrimm_Front.jpg' %}" alt="">
-                    </a>
-                    <a href="./bookdetail.html" class="starwar">
-                        <img src="{% static 'images/books/Sasquatch-URS-4-higher-res-cover-196x300.png' %}" alt="">
-                    </a>
-                    <a href="./bookdetail.html" class="starwar">
-                        <img src="{% static 'images/books/star_wars2-199x300.png' %}" alt="">
-                    </a> {% endcomment %}
+                    {% endfor %}
                 </div>
             </div>
             <div class="introduction">

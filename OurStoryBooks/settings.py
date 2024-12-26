@@ -93,16 +93,7 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.mysql",
-#         "NAME": os.environ.get("DATABASE_NAME", "ourstorybook"),
-#         "USER": os.environ.get("DATABASE_USER", "root"),
-#         "PASSWORD": os.environ.get("DATABASE_PASSWORD", "dinhthai2004"),
-#         "HOST": os.environ.get("DATABASE_HOST", "172.21.0.2"),  # Thay đổi từ 127.0.0.1 sang db
-#         "PORT": os.environ.get("DATABASE_PORT", "3306"),  # Đảm bảo rằng bạn sử dụng cổng mặc định
-#     }
-# }
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -195,3 +186,4 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainSlidingSerializer",
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
+# SESSION_COOKIE_AGE = 12

@@ -79,25 +79,25 @@
                 </li>
                 <li class="navbar-li" id="videos&photos">
                     <img src="{% static 'images/arrow_nav.png' %}" alt="">
-                    <a href="./videos&photos.html">VIDEOS & PHOTOS</a>
+                    <a href="{% url 'home:videos_and_photos' %}">VIDEOS & PHOTOS</a>
                     <ul id="navbar-li-ul2">
-                        <li><a href="./videos&photos.html">VIDEOS</a></li>
-                        <li><a href="./photos.html">PHOTO GALLERY</a></li>
+                        <li><a href="{% url 'home:videos_and_photos' %}">VIDEOS</a></li>
+                        <li><a href="{% url 'home:photos' %}">PHOTO GALLERY</a></li>
                     </ul>
                 </li>
-                <li class="navbar-li" id="findadam"><img src="{% static 'images/arrow_nav.png' %}" alt=""><a href="./findadam.html">FIND ADAM!</a></li>
+                <li class="navbar-li" id="findadam"><img src="{% static 'images/arrow_nav.png' %}" alt=""><a href="{% url 'home:find_adam' %}">FIND ADAM!</a></li>
                 <li class="navbar-li" id="resources">
                     <img src="{% static 'images/arrow_nav.png' %}" alt="">
-                    <a href="./resources.html">RESOURCES</a>
+                    <a href="{% url 'home:resources' %}">RESOURCES</a>
                     <ul id="navbar-li-ul3">
                         <li><a href="./books-sort.html">GRIMM BOOKS</a></li>
                         <li><a href="">THE INQUISITOR’S TALE</a></li>
                         <li><a href="">UNICORN RESCUE SOCIETY</a></li>
                     </ul>
                 </li>
-                <li class="navbar-li" id="news&announcements"><img src="{% static 'images/arrow_nav.png' %}" alt=""><a href="./news&announcement.html">NEWS & ANNOUNCEMENTS</a></li>
-                <li class="navbar-li" id="aboutadam"><img src="{% static 'images/arrow_nav.png' %}" alt=""><a href="./about.html">ABOUT ADAM</a></li>
-                <li class="navbar-li" id="writetoadam"><img src="{% static 'images/arrow_nav.png' %}" alt=""><a href="./writeadam.html">WRITE TO ADAM</a></li>
+                <li class="navbar-li" id="news&announcements"><img src="{% static 'images/arrow_nav.png' %}" alt=""><a href="{% url 'home:news_announ' %}">NEWS & ANNOUNCEMENTS</a></li>
+                <li class="navbar-li" id="aboutadam"><img src="{% static 'images/arrow_nav.png' %}" alt=""><a href="{% url 'home:about_us' %}">ABOUT ADAM</a></li>
+                <li class="navbar-li" id="writetoadam"><img src="{% static 'images/arrow_nav.png' %}" alt=""><a href="{% url 'home:write_adam' %}">WRITE TO ADAM</a></li>
                 {% if request.user.is_authenticated %}
                 <li class="navbar-li" ><img src="{% static 'images/arrow_nav.png' %}" alt=""><a href="{% url 'auth:signout' %}">LOG OUT</a></li>
                 {% endif %}
