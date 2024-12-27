@@ -1,16 +1,26 @@
 $(document).ready(function () {
+    let book_id = $("#book_id").text()
+    let access_token = $("#access_token").text()
     $.ajax({
         type: "get",
-        url: "../data/detailbook.json",
+        url: `/book_api/${book_id}/`,
         dataType: "json",
+        headers: {
+            "Authorization": `Bearer ${access_token}` 
+        },
         success: function (response) {
-            element = response[0]
+            let element = response
+            console.log('response',response)
             $(".reviews-read").before(
                 `
-                <img src='${element.bookimage}' alt=''>
-                <p><span>${element.titlecontent}</span>${element.content}</p>
+                <img src='${element.book_image}' alt=''>
+                <p><span>${element.bookname}</span>${element.description}</p>
                 `
             );
+          
+        },
+        error: function (xhr, status, error) {
+            console.error("Error: ", status, error);
         }
     });
 });

@@ -14,6 +14,7 @@ urlpatterns = [
     path('news_announ/',views.news_announ_page,name="news_announ"),
     path('about_us/',views.about_page,name="about_us"),
     path('write_adam/',views.write_adam_page,name="write_adam"),
-    path('book_api/',views.get_post_book_api,name="get_post"),
+    path('books_api/',views.get_post_book_api,name="get_post"),
+    path('book_api/<int:id>/',views.get_put_delete_api,name="get_put_delete"),
     
 ]

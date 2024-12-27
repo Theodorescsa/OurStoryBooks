@@ -1,5 +1,6 @@
 {% extends 'home/base.html' %}
 {% comment %} banner start {% endcomment %}
+
 {% block banner %}
     {% load static %}
     <div class="banner">
@@ -9,6 +10,8 @@
 {% comment %} banner end {% endcomment %}
 {% comment %} content start {% endcomment %}
 {% block content %}
+<p id="access_token" hidden>{{access}}</p>
+<p id="book_id" hidden>{{book.id}}</p>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/detailbook.css' %}">
         <div class="author">
@@ -18,14 +21,19 @@
             <div class="books-content-bkg">
                 <img src="{% static 'images/detail-book-bkg-left.png' %}" alt="">
                 <img src="{% static 'images/detail-book-bkg-right.png' %}" alt="">
-                <!-- <div class="img-bkg">
+                <div class="img-bkg">
                     <img src="./images/interior_content_right.png" alt=""> 
 
                 </div>
-                 -->
             </div>
             <div class="detail-content">
-                
+                    {% comment %} <div id="book-info-container">
+                        <a  href="" class="grimm" >
+                            <img src="{{book.book_image.url}}" alt="" id="book-image-detail">
+                        </a>
+
+                    </div> {% endcomment %}
+               
                     <div class="reviews-read"><p>Read the reviews here!</p></div>
                     <fieldset>
                         <legend align="center">AVAILABLE EVERYWHERE! ORDER NOW!</legend>
@@ -108,5 +116,6 @@
         <p><b>©2024 Adam Gidwitz | All awesome artwork ©2024 HUGH D’ANDRADE</b></p>
     </div>
 </div>
+<script src="{% static 'js/detailbook.js' %}"></script>
 {% endblock content %}
 {% comment %} content end {% endcomment %}

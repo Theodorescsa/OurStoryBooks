@@ -61,6 +61,30 @@ $(document).ready(function () {
             $(".navbar-li").removeClass("active")
             $("#books").addClass("active");
             break;
+        case "videos&photos":
+            $(".navbar-li").removeClass("active")
+            $("#videos_photos").addClass("active");
+            break;
+        case "find-adam":
+            $(".navbar-li").removeClass("active")
+            $("#findadam").addClass("active");
+            break;
+        case "resources":
+            $(".navbar-li").removeClass("active")
+            $("#resources").addClass("active");
+            break;
+        case "news_announ":
+            $(".navbar-li").removeClass("active")
+            $("#news_announcements").addClass("active");
+            break;
+        case "about_us":
+            $(".navbar-li").removeClass("active")
+            $("#aboutadam").addClass("active");
+            break;
+        case "write_adam":
+            $(".navbar-li").removeClass("active")
+            $("#writetoadam").addClass("active");
+            break;
         default:
             break;
     }

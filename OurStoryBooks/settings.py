@@ -187,3 +187,5 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
 # SESSION_COOKIE_AGE = 12
+
+LOGIN_URL = '/auth/signin/'

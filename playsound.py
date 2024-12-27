@@ -1,7 +1,8 @@
-from playsound import playsound
+import requests
 
-# Đường dẫn đến file âm thanh
-audio_file = ''
+def get_book():
+    response = requests.get('https://potterapi-fedeperin.vercel.app/en/books')
+    books = response.json()
+    return books
 
-# Phát file âm thanh
-playsound(audio_file)
+print(get_book())

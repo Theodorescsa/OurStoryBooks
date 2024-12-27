@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{% static 'css/ChexMoustacheFont/fontfamily.css' %}">
     <link rel="stylesheet" href="{% static 'css/InheritFont/fontfamily.css' %}">
     <link rel="stylesheet" href="{% static 'css/cloudslide.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
     {% comment %} 
     
     {% endcomment %}
@@ -66,7 +68,7 @@
                         <li class="title-dropdown-father"><a href="./writeadam.html">WRITE TO ADAM</a></li>
                     </ul>
                 </div>
-                <li class="navbar-li" id="home" ><img src="{% static 'images/arrow_nav.png' %}" alt=""><a href="{% url 'home:home' %}">HOME</a></li>
+                <li class="navbar-li active" id="home" ><img src="{% static 'images/arrow_nav.png' %}" alt=""><a href="{% url 'home:home' %}">HOME</a></li>
                 <li class="navbar-li" id="books">
                     <img src="{% static 'images/arrow_nav.png' %}" alt="">
                     <a href="{% url 'home:list_books' %}">BOOKS</a>
@@ -77,7 +79,7 @@
                         <li><a href="">THE UNICORN RESCUE SOCIETY</a></li>
                     </ul>
                 </li>
-                <li class="navbar-li" id="videos&photos">
+                <li class="navbar-li" id="videos_photos">
                     <img src="{% static 'images/arrow_nav.png' %}" alt="">
                     <a href="{% url 'home:videos_and_photos' %}">VIDEOS & PHOTOS</a>
                     <ul id="navbar-li-ul2">
@@ -95,11 +97,11 @@
                         <li><a href="">UNICORN RESCUE SOCIETY</a></li>
                     </ul>
                 </li>
-                <li class="navbar-li" id="news&announcements"><img src="{% static 'images/arrow_nav.png' %}" alt=""><a href="{% url 'home:news_announ' %}">NEWS & ANNOUNCEMENTS</a></li>
+                <li class="navbar-li" id="news_announcements"><img src="{% static 'images/arrow_nav.png' %}" alt=""><a href="{% url 'home:news_announ' %}">NEWS & ANNOUNCEMENTS</a></li>
                 <li class="navbar-li" id="aboutadam"><img src="{% static 'images/arrow_nav.png' %}" alt=""><a href="{% url 'home:about_us' %}">ABOUT ADAM</a></li>
                 <li class="navbar-li" id="writetoadam"><img src="{% static 'images/arrow_nav.png' %}" alt=""><a href="{% url 'home:write_adam' %}">WRITE TO ADAM</a></li>
                 {% if request.user.is_authenticated %}
-                <li class="navbar-li" ><img src="{% static 'images/arrow_nav.png' %}" alt=""><a href="{% url 'auth:signout' %}">LOG OUT</a></li>
+                <li class="navbar-li" ><img src="{% static 'images/arrow_nav.png' %}" alt=""><a href="{% url 'auth:signout' %}">LOG OUT-{{request.user.username}}</a></li>
                 {% endif %}
                 {% if not request.user.is_authenticated %}
                 <li class="navbar-li" id="login"><img src="{% static 'images/arrow_nav.png' %}" alt=""><a href="{% url 'auth:signin' %}">LOG IN</a></li>
@@ -110,19 +112,9 @@
      {% block content %}
         
      {% endblock content %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
+ 
     <script src="{% static 'js/navbar.js' %}"></script>
     <script src="{% static 'js/home.js' %}"></script>
     <script src="{% static 'js/redirect-slide.js' %}"></script>
-    <script src="{% static 'js/about.js' %}"></script>
-    <script src="{% static 'js/detailbook.js' %}"></script>
-    <script src="{% static 'js/book.js' %}"></script>
-    <script src="{% static 'js/findadam.js' %}"></script>
-    <script src="{% static 'js/login.js' %}"></script>
-    <script src="{% static 'js/news&announcement.js' %}"></script>
-    <script src="{% static 'js/resources.js' %}"></script>
-    <script src="{% static 'js/videos&photos.js' %}"></script>
-    <script src="{% static 'js/writeadam.js' %}"></script> 
 </body>
 </html>

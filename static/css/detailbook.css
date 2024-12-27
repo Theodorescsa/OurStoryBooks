@@ -296,7 +296,10 @@ legend {
     background-color: rgb(131,182,0);
 }
 
-
+#book-image-detail {
+    height: 200px;
+    width: 25%;
+}
 @media screen and (max-width: 1624px) {
   
     .navbar-container {

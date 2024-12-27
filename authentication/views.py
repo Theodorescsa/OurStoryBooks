@@ -31,6 +31,5 @@ def signup(request):
     return render(request,"authentication/register.html")
 
 def signout(request):
-    user = User.objects.get(username = request.user.username)
-    logout(user)
+    logout(request)  # Đăng xuất người dùng hiện tại
     return redirect("auth:signin")

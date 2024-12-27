@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from rest_framework.decorators import api_view,permission_classes
+from django.contrib.auth.decorators import login_required
 from rest_framework import status
 from rest_framework.response import Response
 from. serializers import BookSerializers
 from .models import BookModel
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
+from rest_framework_simplejwt.tokens import RefreshToken
+
 # Create your views here.
 def home_page(request):
     # user = User.objects.get(username = request.user.username)
@@ -15,6 +18,7 @@ def home_page(request):
     }
     return render(request,"home/home.html",context)
 
+@login_required
 def list_books_page(request):
     books = BookModel.objects.all()
     context = {
@@ -22,11 +26,17 @@ def list_books_page(request):
     }
     return render(request,"home/books.html",context)
 
+@login_required
 def book_detail_page(request,id):
     book = BookModel.objects.get(id=id)
+    user = request.user
+    refresh = RefreshToken.for_user(user)
     context = {
-        'book':book
+        'book':book,
+        'refresh': str(refresh),
+        'access': str(refresh.access_token),
     }
+    print(context)
     return render(request,"home/bookdetail.html",context)
 
 def videos_and_photos_page(request):
@@ -64,7 +74,7 @@ def get_post_book_api(request):
             return redirect("home:list_books")
 
 @api_view(["GET", "PUT", "DELETE"])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def get_put_delete_api(request, id):
     model = get_object_or_404(BookModel, id=id)
 
@@ -77,8 +87,7 @@ def get_put_delete_api(request, id):
         print("geellsadlasd")
         if serializer.is_valid():
             serializer.save()
-            # return Response(serializer.data, status=status.HTTP_200_OK)
-            return redirect('home:detail',id)
+            return Response(serializer.data, status=status.HTTP_200_OK)
     elif request.method == "DELETE":
         model.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
