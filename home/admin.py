@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BookModel
+from .models import BookModel, PageModel
 
 class BookModelAdmin(admin.ModelAdmin):
     # Các trường sẽ hiển thị trong danh sách
@@ -26,8 +26,9 @@ class BookModelAdmin(admin.ModelAdmin):
     
     # Sử dụng filter_horizontal cho trường ManyToManyField
     filter_horizontal = ('genres',)
-
+    
     # Tự động chỉ định các trường chỉ để đọc
     readonly_fields = ('created_at', 'updated_at')
     
 admin.site.register(BookModel, BookModelAdmin)
+admin.site.register(PageModel)

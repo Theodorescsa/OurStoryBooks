@@ -23,24 +23,25 @@
                 <img src="{% static 'images/detail-book-bkg-right.png' %}" alt="">
                 <div class="img-bkg">
                     <img src="./images/interior_content_right.png" alt=""> 
-
                 </div>
             </div>
             <div class="detail-content">
-                    {% comment %} <div id="book-info-container">
-                        <a  href="" class="grimm" >
-                            <img src="{{book.book_image.url}}" alt="" id="book-image-detail">
-                        </a>
-
-                    </div> {% endcomment %}
-               
+                    <div class="button-container">
+                        <a href="{% url 'home:reading_page' %}">Read Online</a>
+                        <p>&nbsp;&nbsp;||&nbsp;&nbsp;</p>
+                        <a href="">Download PDF</a>
+                    </div>
                     <div class="reviews-read"><p>Read the reviews here!</p></div>
+        
                     <fieldset>
                         <legend align="center">AVAILABLE EVERYWHERE! ORDER NOW!</legend>
                         <a href="http://www.indiebound.org/book/9780525425816/adam-gidwitz/glass-grimly" target="_blank"><img src="https://www.adamgidwitz.com/wp-content/themes/adam_gidwitz/images/indiebound.jpg"></a>&nbsp;&nbsp;&nbsp;&nbsp;
                         <a href="http://www.amazon.com/In-Glass-Grimmly-Adam-Gidwitz/dp/0525425810" target="_blank"><img src="https://www.adamgidwitz.com/wp-content/themes/adam_gidwitz/images/amazon.jpg"></a>&nbsp;&nbsp;&nbsp;&nbsp;
                         <a href="http://www.barnesandnoble.com/w/in-a-glass-grimmly-adam-gidwitz/1109230154?ean=9780525425816" target="_blank"><img src="https://www.adamgidwitz.com/wp-content/themes/adam_gidwitz/images/B&amp;N.jpg"></a>
                     </fieldset>
+                    <div id="book-content">
+                        
+                    </div>
             </div>
             <div class="introduction">
                 <div class="all-box">

@@ -199,9 +199,8 @@ a {
 }
 .reviews-read {
     clear: both;
-    width: 97%;
-    margin-left: 47px;
-    margin:70px 0;
+    width: 100%;
+    margin:10px 0;
     display: flex;
     justify-content: center;
     color: rgb(131,182,0);
@@ -209,6 +208,12 @@ a {
 }
 .reviews-read > p {
     font-size: 20px;
+}
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
 }
 fieldset {
     border: 1px solid #dddddd;
@@ -300,6 +305,7 @@ legend {
     height: 200px;
     width: 25%;
 }
+
 @media screen and (max-width: 1624px) {
   
     .navbar-container {
@@ -543,6 +549,13 @@ legend {
     .reviews-read > p {
         font-size: small;
         top: 100px;
+    }
+    .button-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        font-size: small;
+        
     }
     .footer-content > ul {
         flex-direction: column;

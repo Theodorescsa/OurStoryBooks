@@ -3,8 +3,8 @@ from rest_framework.decorators import api_view,permission_classes
 from django.contrib.auth.decorators import login_required
 from rest_framework import status
 from rest_framework.response import Response
-from. serializers import BookSerializers
-from .models import BookModel
+from. serializers import BookSerializers, PageSerializers
+from .models import BookModel, PageModel
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -35,9 +35,14 @@ def book_detail_page(request,id):
         'book':book,
         'refresh': str(refresh),
         'access': str(refresh.access_token),
+        
     }
     print(context)
     return render(request,"home/bookdetail.html",context)
+
+@login_required
+def reading_page(request):
+    return render(request,'home/reading_page.html')
 
 def videos_and_photos_page(request):
     return render(request,'home/videos_and_photos.html')
@@ -59,35 +64,55 @@ def about_page(request):
 
 def write_adam_page(request):
     return render(request,'home/writeadam.html')
-@api_view(["GET","POST"])
+
+@api_view(["GET", "POST"])
 @permission_classes([IsAuthenticated])  # Yêu cầu xác thực JWT
-def get_post_book_api(request):
+def get_post_api(request):
     if request.method == "GET":
-        model = BookModel.objects.all()
-        serializers = BookSerializers(model,many = True)
+        model_type = request.query_params.get("model", "BookModel")  # Lấy loại model từ query param
+        if model_type == "PageModel":
+            model = PageModel.objects.all()
+            serializers = PageSerializers(model, many=True)
+        else:  # Mặc định lấy BookModel
+            model = BookModel.objects.all()
+            serializers = BookSerializers(model, many=True)
         return Response(serializers.data)
-    
+
     elif request.method == "POST":
-        serializer = BookSerializers(data=request.data)
+        model_type = request.data.get("model", "BookModel")  # Kiểm tra loại model từ dữ liệu POST
+        if model_type == "PageModel":
+            serializer = PageSerializers(data=request.data)
+        else:  # Mặc định sử dụng BookSerializers
+            serializer = BookSerializers(data=request.data)
+
         if serializer.is_valid():
             serializer.save()
             return redirect("home:list_books")
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 @api_view(["GET", "PUT", "DELETE"])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])  # Yêu cầu xác thực JWT
 def get_put_delete_api(request, id):
-    model = get_object_or_404(BookModel, id=id)
+    model_type = request.query_params.get("model", "BookModel")  # Xác định loại model từ query param
+    if model_type == "PageModel":
+        model = get_object_or_404(PageModel, id=id)
+        serializer_class = PageSerializers
+    else:  # Mặc định lấy BookModel
+        model = get_object_or_404(BookModel, id=id)
+        serializer_class = BookSerializers
 
     if request.method == "GET":
-        serializer = BookSerializers(model)
+        serializer = serializer_class(model)
         return Response(serializer.data)
 
     elif request.method == "PUT":
-        serializer = BookSerializers(model, data=request.data)
-        print("geellsadlasd")
+        serializer = serializer_class(model, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     elif request.method == "DELETE":
         model.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
