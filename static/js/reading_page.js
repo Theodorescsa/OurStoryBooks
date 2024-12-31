@@ -1,24 +1,22 @@
-let currentPage = 1;
+var pages = document.getElementsByClassName('page');
+    for (var i = 0; i < pages.length; i++) {
+      var page = pages[i];
+      if (i % 2 === 0) {
+        page.style.zIndex = (pages.length - i);
+      }
+    }
 
-function toggleClass(e, toggleClassName) {
-  if(e.className.includes(toggleClassName)) {
-    e.className = e.className.replace(' ' + toggleClassName, '');
-  } else {
-    e.className += ' ' + toggleClassName;
-  }
-}
-
-function movePage(e, page) {
-  if (page == currentPage) {
-    currentPage+=2;
-    toggleClass(e, "left-side");
-    toggleClass(e.nextElementSibling, "left-side");
-    
-  }
-  else if (page = currentPage - 1) {
-    currentPage-=2;
-    toggleClass(e, "left-side");
-    toggleClass(e.previousElementSibling, "left-side");
-  }
-  
-}
+    document.addEventListener('DOMContentLoaded', function() {
+      for (var i = 0; i < pages.length; i++) {
+        pages[i].pageNum = i + 1;
+        pages[i].onclick = function() {
+          if (this.pageNum % 2 === 0) {
+            this.classList.remove('flipped');
+            this.previousElementSibling.classList.remove('flipped');
+          } else {
+            this.classList.add('flipped');
+            this.nextElementSibling.classList.add('flipped');
+          }
+        }
+      }
+    });

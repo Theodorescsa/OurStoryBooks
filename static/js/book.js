@@ -13,13 +13,13 @@ $(document).ready(function () {
     $('.books').find("a").hover(
         function () {
             $(this).find("img").animate({
-                width: "33%",
+                width: "27%",
             }, 300);
             // audio.play();
         },
         function () {
             $(this).find("img").animate({
-                width: "30%",
+                width: "25%",
             }, 300);
             // audio.pause();
             // audio.currentTime = 0; 

@@ -248,7 +248,7 @@ a {
     opacity: 0;
 }
 .books > a > img {
-    width: 30%;
+    width: 25%;
     padding-top: 2%;
 }
 /* .books >a:nth-child(4) > img,.books >a:nth-child(5)> img {

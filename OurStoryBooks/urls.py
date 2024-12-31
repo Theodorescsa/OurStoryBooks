@@ -24,6 +24,7 @@ urlpatterns = [
     path('auth/',include('authentication.urls')),
     path('genres/',include('genres.urls')),
     path('jwt/',include('jwt_api.urls')),
+    path('payment/',include('payment.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

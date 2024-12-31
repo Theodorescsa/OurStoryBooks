@@ -11,23 +11,23 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 # Create your views here.
 def home_page(request):
-    # user = User.objects.get(username = request.user.username)
     books = BookModel.objects.all()
     context = {
         'books':books
     }
     return render(request,"home/home.html",context)
 
-@login_required
 def list_books_page(request):
+
     books = BookModel.objects.all()
     context = {
         'books':books
     }
     return render(request,"home/books.html",context)
 
-@login_required
 def book_detail_page(request,id):
+    if not request.user.is_authenticated:
+        return render(request, 'home/not_logged_in.html')
     book = BookModel.objects.get(id=id)
     user = request.user
     refresh = RefreshToken.for_user(user)
@@ -37,12 +37,19 @@ def book_detail_page(request,id):
         'access': str(refresh.access_token),
         
     }
-    print(context)
     return render(request,"home/bookdetail.html",context)
 
 @login_required
-def reading_page(request):
-    return render(request,'home/reading_page.html')
+def reading_page(request, book_id):
+    if not request.user.is_authenticated:
+        return render(request, 'home/not_logged_in.html')
+    book = BookModel.objects.get(id=book_id)
+    pages = PageModel.objects.filter(book=book)
+    context = {
+        'book': book,
+        'pages': pages
+    }
+    return render(request,'home/reading_page.html',context)
 
 def videos_and_photos_page(request):
     return render(request,'home/videos_and_photos.html')

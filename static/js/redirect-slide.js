@@ -3,14 +3,14 @@ $(document).ready(function () {
         left: "-700px",
         opacity:0
 
-    }, 3200, function() {
+    }, 2000, function() {
         $(this).css("display", "none");
     });
 
     $("#redirect-background2").animate({
         right: "-700px",
         opacity:0
-    }, 3200, function() {
+    }, 2000, function() {
         $(this).css("display", "none");
     });
 });

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .not-logging-content {
+            text-align: center;
+            margin-top: 100px;
+            font-family: Arial, sans-serif;
+        }
+        .not-logging-content h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .not-logging-content a {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .not-logging-content a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+    <div class="not-logging-content">
+        <h1>Please log in to view this page</h1>
+        <a href="{% url 'auth:signin' %}">Back to Signin</a>
+    </div>
+
+</body>
+</html>
