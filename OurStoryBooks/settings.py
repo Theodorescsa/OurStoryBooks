@@ -14,9 +14,14 @@ from pathlib import Path
 from datetime import timedelta
 from django.conf import settings
 import os
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+import environ
 
+# Khởi tạo môi trường từ tệp .env
+env = environ.Env()
+environ.Env.read_env()
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -27,7 +32,7 @@ SECRET_KEY = 'django-insecure-izt+$u@n7&v&(mh-f(hrdybs*6r6t_ee1!@vu3!b1@@dmy!9bh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['127.0.0.1'])
 
 
 # Application definition
@@ -84,16 +89,15 @@ WSGI_APPLICATION = 'OurStoryBooks.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "ourstorybooks",
-        "USER": "root",
-        "PASSWORD": "dinhthai2004",
-        "HOST": "127.0.0.1",
-        "PORT": "3306",
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': env('DATABASE_NAME'),
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASSWORD'),
+        'HOST': env('DATABASE_HOST'),
+        'PORT': env('DATABASE_PORT'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -190,6 +194,16 @@ SIMPLE_JWT = {
 # SESSION_COOKIE_AGE = 12
 
 LOGIN_URL = '/auth/signin/'
+
+CORS_ALLOW_ALL_ORIGINS = env.bool('CORS_ALLOW_ALL_ORIGINS', default=False)
+CORS_ALLOWED_ORIGINS = env.list('CORS_ALLOWED_ORIGINS')
+CORS_ALLOW_METHODS = env.list('CORS_ALLOW_METHODS')
+CORS_ALLOW_HEADERS = env.list('CORS_ALLOW_HEADERS')
+
+SECURE_CROSS_ORIGIN_OPENER_POLICY = env('SECURE_CROSS_ORIGIN_OPENER_POLICY', default=None)
+
+# # CSRF TRUSTED ORIGINS
+CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS')
 
 VNPAY_RETURN_URL = 'http://localhost:8000/payment_return'  # get from config
 VNPAY_PAYMENT_URL = 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html'  # get from config
