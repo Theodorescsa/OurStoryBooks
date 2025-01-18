@@ -3,7 +3,7 @@ $(document).ready(function () {
     let access_token = $("#access_token").text()
     $.ajax({
         type: "get",
-        url: `/book_api/${book_id}/`,
+        url: `/home-api/books/${book_id}/`,
         dataType: "json",
         headers: {
             "Authorization": `Bearer ${access_token}` 

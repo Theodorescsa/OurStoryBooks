@@ -1,10 +1,13 @@
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from . import views
+from rest_framework.routers import DefaultRouter
+router = DefaultRouter()
+router.register(r'genres', views.GenresModelViewSet)
 app_name = "genres"
 urlpatterns = [
+    path('',include(router.urls)),
     # path('',views.list_genres,name="list_genres"),
-    path('genres_api',views.get_post_genres_api,name="get_post"),
     
 ]

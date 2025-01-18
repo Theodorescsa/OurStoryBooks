@@ -3,10 +3,11 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 from rest_framework.routers import DefaultRouter
-from .viewsets import BookModelViewSet
+from .viewsets import BookModelViewSet, PageModelViewSet
 
 router = DefaultRouter()
 router.register(r'books', BookModelViewSet)
+router.register(r'pages', PageModelViewSet)
 
 app_name = "home"
 urlpatterns = [
@@ -20,9 +21,6 @@ urlpatterns = [
     path('news_announ/',views.news_announ_page,name="news_announ"),
     path('about_us/',views.about_page,name="about_us"),
     path('write_adam/',views.write_adam_page,name="write_adam"),
-    path('books_api/',views.get_post_api,name="get_post"),
-    path('book_api/<int:id>/',views.get_put_delete_api,name="get_put_delete"),
     path('reading-book/<int:book_id>/',views.reading_page,name="reading_page"),
-    path('api/', include(router.urls)),
-    
+    path('home-api/', include(router.urls)),
 ]

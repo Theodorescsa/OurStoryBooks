@@ -25,10 +25,10 @@ $(document).ready(function () {
             // audio.currentTime = 0; 
         }
     );
-    var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIxMTQ5NTAyLCJpYXQiOjE3MjExNDU5MDIsImp0aSI6IjdkOGM4ZDk0Njc1OTQ3NTBiYmRmNjdlNTA2M2QyMzc0IiwidXNlcl9pZCI6MX0.XIzjeiozBKWAGuLj1BkFeSD7M8N2U_PEGCdXm8_0P50"
+    var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM3MTc2NjA0LCJpYXQiOjE3MzcxNzMwMDQsImp0aSI6IjVmYTRkMGY4MWVkNzQwOTY5NWE0MmY5ZTk5MDdjMGU0IiwidXNlcl9pZCI6MX0.ES6GW9mQQ0927JUfHatbZixeR_9GiwFTIKlSa5YwFWc"
     $.ajax({
         type: "get",
-        url: "http://127.0.0.1:8000/book_api/",
+        url: "http://127.0.0.1:8000/home-api/books/",
         dataType: "json",
         headers: {
             "Authorization": "Bearer " + token

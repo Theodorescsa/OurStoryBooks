@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
-
+    'drf_spectacular',
     'home',
     'authentication',
     'genres',
@@ -62,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'OurStoryBooks.urls'
@@ -210,3 +211,13 @@ VNPAY_PAYMENT_URL = 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html'  # get 
 VNPAY_API_URL = 'https://sandbox.vnpayment.vn/merchant_webapi/api/transaction'
 VNPAY_TMN_CODE = 'F9GSCV10'  # Website ID in VNPAY System, get from config
 VNPAY_HASH_SECRET_KEY = 'JUX000XYAUTGHZIW0LQCICSTVEACX'  # Secret key for create checksum,get from config
+
+REST_FRAMEWORK.update({
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+})
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'CRM API',
+    'DESCRIPTION': 'API documentation for the CRM system',
+    'VERSION': '1.0.0',
+}
