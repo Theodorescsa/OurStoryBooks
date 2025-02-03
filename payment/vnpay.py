@@ -5,7 +5,7 @@ import urllib.parse
 class vnpay:
     requestData = {}
     responseData = {}
-
+    transaction_detail = {}
     def get_payment_url(self, vnpay_payment_url, secret_key):
         inputData = sorted(self.requestData.items())
         queryString = ''
@@ -19,7 +19,10 @@ class vnpay:
                 queryString = key + '=' + urllib.parse.quote_plus(str(val))
 
         hashValue = self.__hmacsha512(secret_key, queryString)
-        return vnpay_payment_url + "?" + queryString + '&vnp_SecureHash=' + hashValue
+        return {
+            "vnpay_payment_url":vnpay_payment_url + "?" + queryString + '&vnp_SecureHash=' + hashValue,
+            "transaction_detail":self.transaction_detail
+            }
 
     def validate_response(self, secret_key):
         vnp_SecureHash = self.responseData['vnp_SecureHash']

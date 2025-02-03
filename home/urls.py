@@ -3,11 +3,12 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 from rest_framework.routers import DefaultRouter
-from .viewsets import BookModelViewSet, PageModelViewSet
+from .viewsets import BookModelViewSet, PageModelViewSet, PurchasedBookViewSet
 
 router = DefaultRouter()
 router.register(r'books', BookModelViewSet)
 router.register(r'pages', PageModelViewSet)
+router.register(r'purchased_books', PurchasedBookViewSet)
 
 app_name = "home"
 urlpatterns = [

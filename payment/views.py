@@ -11,10 +11,11 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from urllib.parse import quote as urlquote
-
+from home.models import PurchasedBook, BookModel
 from .forms import PaymentForm
 from .vnpay import vnpay
 
+book_id = 0
 
 def index(request):
     return render(request, "payment/index.html", {"title": "Danh sách demo"})
@@ -27,8 +28,15 @@ def hmacsha512(key, data):
 
 
 def payment(request):
-
+    global book_id
+    if request.method == "GET":
+        global book_id
+        book_id = request.GET.get("book_id")
+        request.session["book_id"] = book_id  # Store in session
     if request.method == 'POST':
+        book_id = request.session.get("book_id")
+        if book_id is None:
+            return JsonResponse({"error": "Missing book_id"}, status=400)
         # Process input data and build url payment
         form = PaymentForm(request.POST)
         if form.is_valid():
@@ -49,6 +57,9 @@ def payment(request):
             vnp.requestData['vnp_TxnRef'] = order_id
             vnp.requestData['vnp_OrderInfo'] = order_desc
             vnp.requestData['vnp_OrderType'] = order_type
+            vnp.transaction_detail['book_id'] = book_id
+     
+            vnp.transaction_detail['price'] = amount
             # Check language, default: vn
             if language and language != '':
                 vnp.requestData['vnp_Locale'] = language
@@ -62,8 +73,8 @@ def payment(request):
             vnp.requestData['vnp_IpAddr'] = ipaddr
             vnp.requestData['vnp_ReturnUrl'] = settings.VNPAY_RETURN_URL
             vnpay_payment_url = vnp.get_payment_url(settings.VNPAY_PAYMENT_URL, settings.VNPAY_HASH_SECRET_KEY)
-            print(vnpay_payment_url)
-            return redirect(vnpay_payment_url)
+
+            return redirect(vnpay_payment_url["vnpay_payment_url"])
         else:
             print("Form input not validate")
     else:
@@ -84,6 +95,7 @@ def payment_ipn(request):
         vnp_PayDate = inputData['vnp_PayDate']
         vnp_BankCode = inputData['vnp_BankCode']
         vnp_CardType = inputData['vnp_CardType']
+        # vnp_book_id = inputData['book_id']
         if vnp.validate_response(settings.VNPAY_HASH_SECRET_KEY):
             # Check & Update Order Status in your Database
             # Your code here
@@ -115,6 +127,9 @@ def payment_ipn(request):
 
 def payment_return(request):
     inputData = request.GET
+    global book_id
+    book = BookModel.objects.get(id=book_id)
+    user = request.user
     if inputData:
         vnp = vnpay()
         vnp.responseData = inputData.dict()
@@ -127,14 +142,20 @@ def payment_return(request):
         vnp_PayDate = inputData['vnp_PayDate']
         vnp_BankCode = inputData['vnp_BankCode']
         vnp_CardType = inputData['vnp_CardType']
+        vnpay_payment_url = vnp.get_payment_url(settings.VNPAY_PAYMENT_URL, settings.VNPAY_HASH_SECRET_KEY)
         if vnp.validate_response(settings.VNPAY_HASH_SECRET_KEY):
             if vnp_ResponseCode == "00":
+                purchase, created = PurchasedBook.objects.get_or_create(user=user, book=book)
+                status = purchase.update_status()
+                # Update status of order
                 return render(request, "payment/payment_return.html", {"title": "Kết quả thanh toán",
                                                                "result": "Thành công", "order_id": order_id,
                                                                "amount": amount,
                                                                "order_desc": order_desc,
                                                                "vnp_TransactionNo": vnp_TransactionNo,
-                                                               "vnp_ResponseCode": vnp_ResponseCode})
+                                                               "vnp_ResponseCode": vnp_ResponseCode,
+                                                               "status": status
+                                                               })
             else:
                 return render(request, "payment/payment_return.html", {"title": "Kết quả thanh toán",
                                                                "result": "Lỗi", "order_id": order_id,

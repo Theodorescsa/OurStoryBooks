@@ -8,7 +8,7 @@ from .models import BookModel, PageModel
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
-
+from .decorators import check_payment_status
 # Create your views here.
 def home_page(request):
     books = BookModel.objects.all()
@@ -40,7 +40,9 @@ def book_detail_page(request,id):
     return render(request,"home/bookdetail.html",context)
 
 @login_required
+@check_payment_status
 def reading_page(request, book_id):
+    print("Reading page")
     if not request.user.is_authenticated:
         return render(request, 'home/not_logged_in.html')
     book = BookModel.objects.get(id=book_id)

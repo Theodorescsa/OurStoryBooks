@@ -19,7 +19,7 @@ from django.urls import path,include
 from django.conf.urls.static import static
 from django.conf import settings
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
-
+from payment.views import payment_return
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('home.urls')),
@@ -27,6 +27,8 @@ urlpatterns = [
     path('genres/',include('genres.urls')),
     path('jwt/',include('jwt_api.urls')),
     path('payment/',include('payment.urls')),
+    path('payment_return/', payment_return, name='payment_return'),
+
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     # Optional UI:
     path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),

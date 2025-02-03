@@ -37,3 +37,22 @@ class PageModel(models.Model):
 
     def __str__(self):
         return f"{self.book.bookname} - Page {self.page_number}"
+
+class PurchasedBook(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='purchased_books')
+    book = models.ForeignKey(BookModel, on_delete=models.CASCADE, related_name='purchased_by_users')
+    purchase_date = models.DateTimeField(auto_now_add=True)
+    price_at_purchase = models.FloatField(blank=True,null=True)
+    is_paid = models.BooleanField(default=False)
+
+    class Meta:
+        unique_together = ('user', 'book')  # Đảm bảo mỗi người dùng chỉ mua một cuốn sách một lần
+        ordering = ['-purchase_date']
+
+    def __str__(self):
+        return f"{self.user.username} purchased {self.book.bookname} on {self.purchase_date.strftime('%Y-%m-%d')}"
+    
+    def update_status(self):
+        self.is_paid = True
+        self.save()
+        return self.is_paid

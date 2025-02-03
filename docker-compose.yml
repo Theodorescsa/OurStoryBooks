@@ -23,8 +23,8 @@ services:
     container_name: ourstorybook_web
     build:
       context: .
-    expose:
-      - "8000"  # Không cần map port, chỉ cần expose để Nginx truy cập được
+    ports:
+      - "8000:8000"
     depends_on:
       db:
         condition: service_healthy
