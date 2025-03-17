@@ -18,7 +18,7 @@ def check_payment_status(view_func):
             purchase, created = PurchasedBook.objects.get_or_create(user=user, book=book)  # Get the purchase record
 
             if not purchase.is_paid:  # If not paid, redirect to payment page
-                return redirect(f"/payment/payment/?book_id={book_id}&price={purchase.price_at_purchase}")
+                return redirect(f"/payment/payment/?book_id={book_id}&price={book.price}")
 
         except BookModel.DoesNotExist:
             return JsonResponse({"error": "Book not found."}, status=404)

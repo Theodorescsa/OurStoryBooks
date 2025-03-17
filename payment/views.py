@@ -20,6 +20,7 @@ from django.shortcuts import get_object_or_404
 
 book_id = 0
 user_id = 0
+price = 0
 def index(request):
     return render(request, "payment/index.html", {"title": "Danh sách demo"})
 
@@ -33,12 +34,13 @@ def hmacsha512(key, data):
 def payment(request):
     global book_id
     global user_id
-    
+    global price
     if request.method == "GET":
         global book_id
         global user_id
         user_id = request.user.id
         book_id = request.GET.get("book_id")
+        price = request.GET.get("price")
         request.session["book_id"] = book_id  # Store in session
         request.session["user_id"] = user_id  # Store in session
     if request.method == 'POST':
@@ -63,7 +65,7 @@ def payment(request):
             vnp.requestData['vnp_Version'] = '2.1.0'
             vnp.requestData['vnp_Command'] = 'pay'
             vnp.requestData['vnp_TmnCode'] = settings.VNPAY_TMN_CODE
-            vnp.requestData['vnp_Amount'] = amount * 100
+            vnp.requestData['vnp_Amount'] = amount
             vnp.requestData['vnp_CurrCode'] = 'VND'
             vnp.requestData['vnp_TxnRef'] = order_id
             vnp.requestData['vnp_OrderInfo'] = order_desc
@@ -89,7 +91,7 @@ def payment(request):
         else:
             print("Form input not validate")
     else:
-        return render(request, "payment/payment.html", {"title": "Thanh toán"})
+        return render(request, "payment/payment.html", {"title": "Thanh toán","price":price})
 
 
 def payment_ipn(request):
