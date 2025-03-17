@@ -213,7 +213,7 @@ SECURE_CROSS_ORIGIN_OPENER_POLICY = env('SECURE_CROSS_ORIGIN_OPENER_POLICY', def
 # # CSRF TRUSTED ORIGINS
 CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS')
 
-VNPAY_RETURN_URL = 'http://localhost:8000/payment_return'  # get from config
+VNPAY_RETURN_URL = env('VNPAY_RETURN_URL')  # get from config
 VNPAY_PAYMENT_URL = 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html'  # get from config
 VNPAY_API_URL = 'https://sandbox.vnpayment.vn/merchant_webapi/api/transaction'
 VNPAY_TMN_CODE = 'LXG3SRZB'  
