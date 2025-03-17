@@ -56,3 +56,21 @@ class PurchasedBook(models.Model):
         self.is_paid = True
         self.save()
         return self.is_paid
+
+class ReadingSession(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reading_sessions')
+    page = models.ForeignKey(PageModel, on_delete=models.CASCADE, related_name='reading_sessions')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        """
+        Return a string representation of the ReadingSession object.
+
+        The string representation of the object will be in the format:
+        "user.username reading page.page_number on page.created_at"
+
+        :return: A string representation of the ReadingSession object
+        :rtype: str
+        """
+        return f"{self.user.username} reading page {self.page.page_number} on {self.page.created_at}"  # noqa: E501 self.
+    

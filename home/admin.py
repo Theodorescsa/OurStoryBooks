@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BookModel, PageModel, PurchasedBook
+from .models import BookModel, PageModel, PurchasedBook, ReadingSession
 
 class BookModelAdmin(admin.ModelAdmin):
     list_display = ('id', 'bookname', 'display_author', 'display_users', 'display_genres', 'pages', 'price', 'published', 'created_at', 'updated_at')
@@ -89,3 +89,4 @@ class PurchasedBookAdmin(admin.ModelAdmin):
 
 # Register model and admin
 admin.site.register(PurchasedBook, PurchasedBookAdmin)
+admin.site.register(ReadingSession)

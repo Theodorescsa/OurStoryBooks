@@ -1,7 +1,6 @@
 $(document).ready(function () {
  
     $(".login-form").animate({
-        top:'130px',
         opacity:1
     },3000)
     $(".blood").animate({

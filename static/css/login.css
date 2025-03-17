@@ -19,9 +19,9 @@ body {
 }
 
 #background-video {
-    /* height: 100vh; */
-    position: absolute;
+    height: 100vh;
     width: 100%;
+    z-index: 0;
 }
 a {
     text-decoration: none;
@@ -45,25 +45,23 @@ a {
     opacity: 0;
 }
 .login-form {
-    position: absolute;
-        /* width: 100%; */
-        background-repeat: no-repeat;
-        background: url("../images/backdrop-640x360.jpg");
-        background-repeat: no-repeat;
-        height: 470px;
-        width: 60%;
-        background-size: cover;
-        /* z-index: 1; */
-        right: 70px;
-        /* top: 130px; */
-        top: 330px;
-        border-radius: 20px;
-        text-align: center;
-        opacity: 0;
-        border-bottom: 10px solid black;
-        border-right: 6px solid black;
+    position: absolute; /* hoặc fixed nếu muốn giữ nguyên vị trí khi cuộn */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    
+    width: 60%;
+    height: 470px;
+    background: url("../images/backdrop-640x360.jpg") no-repeat center;
+    background-size: cover;
 
+    border-radius: 20px;
+    text-align: center;
+    opacity: 0;
+    border-bottom: 10px solid black;
+    border-right: 6px solid black;
 }
+
 
 .login-form {
     padding: 0px 28px 28px 28px;
@@ -126,7 +124,7 @@ input::placeholder {
     color: white;
 }
   
-@media screen and (max-width: 1624px) {
+@media screen and (max-width: 3000px) {
   
     .navbar-container {
         position: absolute;
@@ -134,6 +132,7 @@ input::placeholder {
         display: flex;
         justify-content: center;
         top: 0;
+        z-index: 2;
     }
     .narbar {
         display: flex;

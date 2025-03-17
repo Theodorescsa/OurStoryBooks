@@ -105,3 +105,28 @@ p {
   bottom: 0.3vw;
   right: 1vw;
 }
+.tool {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tool button {
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.tool audio {
+  height: 30px;
+}
+
+.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.dark-mode .page {
+  background-color: #222;
+  color: #ffffff;
+}

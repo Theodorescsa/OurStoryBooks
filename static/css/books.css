@@ -256,7 +256,7 @@ a {
     height: 340px;
 } */
 
-@media screen and (max-width: 1624px) {
+@media screen and (max-width: 3000px) {
   
     .navbar-container {
         position: absolute;

@@ -4,73 +4,8 @@
 <link rel="stylesheet" href="{% static 'css/login.css' %}">
 
     <div class="container">
-        <video autoplay  loop  id="background-video">
-            <source src="{% static 'images/login.mp4' %}" type="video/mp4">
-            Your browser does not support HTML5 video.
-        </video>
-        <div class="navbar-container">
-            <ul class="narbar">
-                    <div class="menu-dropdown">
-                        <li id="navbar-li-menu" ><img src="{% static 'images/arrow_nav.png' %}" alt="">MENU</li>
-                        <ul>
-                            <li class="title-dropdown-father"><a href="{% static 'home.html' %}">HOME</a></li>
-                            <li class="title-dropdown-father"><a href="{% static 'books.html' %}">BOOKS</a>
-                                <ul class="title-dropdown">
-                                    <li><a href="{% static 'bookdetail.html' %}">GRIMM BOOKS</a>
-                                        <ul>
-                                            <li><a href="{% static 'bookdetail.html' %}">A TALE DARK AND GRIMM</a></li>
-                                            <li><a href="{% static 'bookdetail.html' %}">IN A GLASS GRIMMLY</a></li>
-                                            <li><a href="{% static 'bookdetail.html' %}">THE GRIMM CONCLUSION</a></li>
-                                            <li><a href="{% static 'news&announcement.html' %}">REVIEWS</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="{% static 'bookdetail.html' %}">STAR WARS BOOKS</a></li>
-                                    <li><a href="{% static 'bookdetail.html' %}">THE INQUISITOR'S TALE</a>
-                                        <ul >
-                                            <li><a href="#">REVIEWS</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="{% static 'bookdetail.html' %}">THE UNICORN RESCUE SOCIETY</a></li>
-                                </ul>
-                            </li>
-                            <li class="title-dropdown-father"><a href="{% static 'videos&photos.html' %}">VIDEOS & PHOTOS</a>
-                                <ul class="title-dropdown">
-                                    <li><a href="{% static 'videos&photos.html' %}">VIDEOS</a></li>
-                                    <li><a href="{% static 'photos.html' %}">PHOTO GALLERY</a></li>
-                                </ul>
-                            </li>
-                  
-                            <li class="title-dropdown-father"><a href="{% static 'about.html' %}">ABOUT ADAM</a></li>
-                            <li class="title-dropdown-father"><a href="{% static 'writeadam.html' %}">WRITE TO ADAM</a></li>
-                        </ul>
-                    </div>
-                    <li class="navbar-li active" ><img src="{% static 'images/arrow_nav.png' %}" alt=""><a href="{% static 'login.html' %}">LOGIN</a></li>
-                    <li class="navbar-li">
-                        <img src="{% static 'images/arrow_nav.png' %}" alt="">
-                        <a href="{% static 'books.html' %}">BOOKS</a>
-                        <ul id="navbar-li-ul1">
-                            <li><a href="{% static 'books-sort.html' %}">GRIMM BOOKS</a></li>
-                            <li><a href="">STAR WARS BOOKS</a></li>
-                            <li><a href="">THE INQUISITOR’S TALE</a></li>
-                            <li><a href="">THE UNICORN RESCUE SOCIETY</a></li>
-                        </ul>
-                    </li>
-                    <li class="navbar-li">
-                        <img src="{% static 'images/arrow_nav.png' %}" alt="">
-                        <a href="{% static 'videos&photos.html' %}">VIDEOS & PHOTOS</a>
-                        <ul id="navbar-li-ul2">
-                            <li><a href="{% static 'videos&photos.html' %}">VIDEOS</a></li>
-                            <li><a href="{% static 'photos.html' %}">PHOTO GALLERY</a></li>
-                        </ul>
-                    </li>
-                
-                    <li class="navbar-li"><img src="{% static 'images/arrow_nav.png' %}" alt=""><a href="{% static 'about.html' %}">ABOUT ADAM</a></li>
-                    <li class="navbar-li"><img src="{% static 'images/arrow_nav.png' %}" alt=""><a href="{% static 'writeadam.html' %}">WRITE TO ADAM</a></li>
+        <img src="{% static 'images/darkmoon.jpg' %}" id="background-video" alt="">
 
-            </ul>
-        </div>
-        <img src="{% static 'images/blood.png' %}" class="blood">
-        <img src="{% static 'images/tonhen-Photoroom.png' %}" class="tonhen">
 
         <div class="login-form">
             <p class="login-title">Login Here</p>

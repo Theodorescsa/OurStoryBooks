@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from rest_framework import status
 from rest_framework.response import Response
 from. serializers import BookSerializers, PageSerializers
-from .models import BookModel, PageModel
+from .models import BookModel, PageModel, ReadingSession
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -47,10 +47,19 @@ def reading_page(request, book_id):
         return render(request, 'home/not_logged_in.html')
     book = BookModel.objects.get(id=book_id)
     pages = PageModel.objects.filter(book=book)
+    user = request.user
+    refresh = RefreshToken.for_user(user)
+    last_bookmarked_page = ReadingSession.objects.filter(user=user, page__book=book).order_by('-created_at').first()
+    # Nếu có trang đánh dấu, lấy ID của trang đó
+    bookmarked_page_id = last_bookmarked_page.page.id if last_bookmarked_page else None
+
     context = {
         'book': book,
-        'pages': pages
-    }
+        'pages': pages,
+        'refresh': str(refresh),
+        'access': str(refresh.access_token),
+        'bookmarked_page_id': bookmarked_page_id  # Truyền ID trang đã đánh dấu lớn nhất vào context
+}
     return render(request,'home/reading_page.html',context)
 
 def videos_and_photos_page(request):

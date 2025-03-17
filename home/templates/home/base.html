@@ -91,29 +91,10 @@ ul li {
                     <ul>
                         <li class="title-dropdown-father"><a href="./home.html">HOME</a></li>
                         <li class="title-dropdown-father"><a href="./books.html">BOOKS</a>
-                            <ul class="title-dropdown">
-                                <li><a href="./bookdetail.html">GRIMM BOOKS</a>
-                                    <ul>
-                                        <li><a href="./bookdetail.html">A TALE DARK AND GRIMM</a></li>
-                                        <li><a href="./bookdetail.html">IN A GLASS GRIMMLY</a></li>
-                                        <li><a href="./bookdetail.html">THE GRIMM CONCLUSION</a></li>
-                                        <li><a href="./news&announcement.html">REVIEWS</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="./bookdetail.html">STAR WARS BOOKS</a></li>
-                                <li><a href="./bookdetail.html">THE INQUISITOR'S TALE</a>
-                                    <ul >
-                                        <li><a href="#">REVIEWS</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="./bookdetail.html">THE UNICORN RESCUE SOCIETY</a></li>
-                            </ul>
+                         
                         </li>
                         <li class="title-dropdown-father"><a href="./videos&photos.html">VIDEOS & PHOTOS</a>
-                            <ul class="title-dropdown">
-                                <li><a href="./videos&photos.html">VIDEOS</a></li>
-                                <li><a href="./photos.html">PHOTO GALLERY</a></li>
-                            </ul>
+                
                         </li>
                         <li class="title-dropdown-father"><a href="./about.html">ABOUT ADAM</a></li>
                         <li class="title-dropdown-father"><a href="./writeadam.html">WRITE TO ADAM</a></li>
@@ -145,6 +126,7 @@ ul li {
                 {% endif %}
                 {% if not request.user.is_authenticated %}
                 <li class="navbar-li" id="login"><img src="{% static 'images/arrow_nav.png' %}" alt=""><a href="{% url 'auth:signin' %}">LOG IN</a></li>
+                <li class="navbar-li"><img src="{% static 'images/arrow_nav.png' %}" alt=""><a href="{% url 'auth:signup' %}">REGISTER</a></li>
                 {% endif %}
 
         </ul>
