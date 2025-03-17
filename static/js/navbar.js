@@ -3,9 +3,9 @@ $(document).ready(function () {
     console.log("Current URL: " + currentUrl);
     var newWindowWidth = $(window).width();
     var newWindowHeight = $(window).height();
-    $('#navbar-li-ul1').css("left", `${newWindowWidth * 0.18}px`);  
-    $('#navbar-li-ul2').css("left", `${newWindowWidth * 0.043}px`); 
-    $('#navbar-li-ul3').css("left", `${newWindowWidth * 0.457}px`); 
+    // $('#navbar-li-ul1').css("left", `${newWindowWidth * 0.18}px`);  
+    // $('#navbar-li-ul2').css("left", `${newWindowWidth * 0.043}px`); 
+    // $('#navbar-li-ul3').css("left", `${newWindowWidth * 0.457}px`); 
     $(".navbar-li:not(.active)").on("mouseover", function () {
         $(this).css("background-color", "rgb(0, 150, 224)");
         $(this).find("img").css("display", "block");
@@ -34,9 +34,9 @@ $(document).ready(function () {
         // alert(newWindowHeight)
         // alert(newWindowWidth)
 
-        $('#navbar-li-ul1').css("left", `${newWindowWidth * 0.18}px`);  // 18% of the width
-        $('#navbar-li-ul2').css("left", `${newWindowWidth * 0.243}px`); // 24.3% of the width
-        $('#navbar-li-ul3').css("left", `${newWindowWidth * 0.457}px`); // 45.7% of the width
+        // $('#navbar-li-ul1').css("left", `${newWindowWidth * 0.18}px`);  // 18% of the width
+        // $('#navbar-li-ul2').css("left", `${newWindowWidth * 0.243}px`); // 24.3% of the width
+        // $('#navbar-li-ul3').css("left", `${newWindowWidth * 0.457}px`); // 45.7% of the width
 
         var top = $(".slideshow-background").height() * 0.10;
         $(".animation").css("top", `${top}px`);

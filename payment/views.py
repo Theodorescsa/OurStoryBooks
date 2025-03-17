@@ -14,9 +14,12 @@ from urllib.parse import quote as urlquote
 from home.models import PurchasedBook, BookModel
 from .forms import PaymentForm
 from .vnpay import vnpay
+from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
+
 
 book_id = 0
-
+user_id = 0
 def index(request):
     return render(request, "payment/index.html", {"title": "Danh sách demo"})
 
@@ -29,14 +32,22 @@ def hmacsha512(key, data):
 
 def payment(request):
     global book_id
+    global user_id
+    
     if request.method == "GET":
         global book_id
+        global user_id
+        user_id = request.user.id
         book_id = request.GET.get("book_id")
         request.session["book_id"] = book_id  # Store in session
+        request.session["user_id"] = user_id  # Store in session
     if request.method == 'POST':
         book_id = request.session.get("book_id")
+        user_id = request.session.get("user_id")
         if book_id is None:
             return JsonResponse({"error": "Missing book_id"}, status=400)
+        if user_id is None:
+            return JsonResponse({"error": "Missing user id"}, status=400)
         # Process input data and build url payment
         form = PaymentForm(request.POST)
         if form.is_valid():
@@ -128,8 +139,9 @@ def payment_ipn(request):
 def payment_return(request):
     inputData = request.GET
     global book_id
+    global user_id
     book = BookModel.objects.get(id=book_id)
-    user = request.user
+    user = User.objects.get(id=user_id)
     if inputData:
         vnp = vnpay()
         vnp.responseData = inputData.dict()

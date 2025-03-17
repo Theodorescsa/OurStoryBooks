@@ -23,7 +23,67 @@
     {% block banner %}
     
     {% endblock banner %}
-   
+   <style>
+    /* Định dạng menu chính */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul li {
+    position: relative;
+    display: block;
+}
+
+/* Định dạng menu cha */
+.title-dropdown-father {
+    background: #333;
+    padding: 10px;
+}
+
+.title-dropdown-father a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+}
+
+/* Ẩn menu con mặc định */
+.title-dropdown {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%; /* Hiển thị menu dọc */
+    background: #444;
+    min-width: 200px;
+    z-index: 999;
+}
+
+/* Hiển thị menu con khi hover */
+.title-dropdown-father:hover > .title-dropdown,
+.title-dropdown li:hover > .title-dropdown {
+    display: block;
+}
+
+/* Định dạng các mục trong menu con */
+.title-dropdown li {
+    padding: 10px;
+}
+
+.title-dropdown li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+}
+
+/* Định dạng khi hover */
+.title-dropdown li:hover {
+    background: #555;
+}
+
+   </style>
     <div class="navbar-container">
         <ul class="narbar">
                 <div class="menu-dropdown">
@@ -55,15 +115,6 @@
                                 <li><a href="./photos.html">PHOTO GALLERY</a></li>
                             </ul>
                         </li>
-                        <li class="title-dropdown-father"><a href="./findadam.html">FIND ADAM!</a></li>
-                        <li class="title-dropdown-father"><a href="./resources.html">RESOURCES</a>
-                            <ul class="title-dropdown">
-                                <li><a href="./books-sort.html">GRIMM BOOKS</a></li>
-                                <li><a href="./books-sort.html">THE INQUISITOR'S TALE</a></li>
-                                <li><a href="./books-sort.html">UNICORN RESCUE SOCIETY</a></li>
-                            </ul>
-                        </li>
-                        <li class="title-dropdown-father"><a href="./news&announcement.html">NEWS & ANNOUNCEMENTS</a></li>
                         <li class="title-dropdown-father"><a href="./about.html">ABOUT ADAM</a></li>
                         <li class="title-dropdown-father"><a href="./writeadam.html">WRITE TO ADAM</a></li>
                     </ul>
@@ -87,17 +138,6 @@
                         <li><a href="{% url 'home:photos' %}">PHOTO GALLERY</a></li>
                     </ul>
                 </li>
-                <li class="navbar-li" id="findadam"><img src="{% static 'images/arrow_nav.png' %}" alt=""><a href="{% url 'home:find_adam' %}">FIND ADAM!</a></li>
-                <li class="navbar-li" id="resources">
-                    <img src="{% static 'images/arrow_nav.png' %}" alt="">
-                    <a href="{% url 'home:resources' %}">RESOURCES</a>
-                    <ul id="navbar-li-ul3">
-                        <li><a href="./books-sort.html">GRIMM BOOKS</a></li>
-                        <li><a href="">THE INQUISITOR’S TALE</a></li>
-                        <li><a href="">UNICORN RESCUE SOCIETY</a></li>
-                    </ul>
-                </li>
-                <li class="navbar-li" id="news_announcements"><img src="{% static 'images/arrow_nav.png' %}" alt=""><a href="{% url 'home:news_announ' %}">NEWS & ANNOUNCEMENTS</a></li>
                 <li class="navbar-li" id="aboutadam"><img src="{% static 'images/arrow_nav.png' %}" alt=""><a href="{% url 'home:about_us' %}">ABOUT ADAM</a></li>
                 <li class="navbar-li" id="writetoadam"><img src="{% static 'images/arrow_nav.png' %}" alt=""><a href="{% url 'home:write_adam' %}">WRITE TO ADAM</a></li>
                 {% if request.user.is_authenticated %}

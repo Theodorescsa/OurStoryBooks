@@ -4,11 +4,11 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class BookModel(models.Model):
-    user = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
+    user = models.ManyToManyField(User)
     genres = models.ManyToManyField(GenresModel)
     bookname = models.CharField(max_length=200)
     book_image = models.ImageField(upload_to='images/', null=True)
-    author = models.CharField(max_length=100)
+    author = models.TextField(null=True)
     pages = models.IntegerField()
     price = models.FloatField(null=True)
     description = models.TextField()
