@@ -16,7 +16,7 @@ def home_page(request):
     sort = request.GET.get("sort")
     books = BookModel.objects.all()
     if sort:
-        books = BookModel.objects.filter(genres__name = sort)
+        books = BookModel.objects.filter(genres__genres = sort)
         
     context = {
         'books':books
