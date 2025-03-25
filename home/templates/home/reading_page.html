@@ -73,15 +73,6 @@
               // Nếu đã tìm thấy trang đánh dấu, bắt đầu thêm 'flipped' cho tất cả các trang sau đó
             }
           });
-  
-          // Nếu không tìm thấy trang đánh dấu trong danh sách, bạn có thể thông báo hoặc giữ nguyên trang đầu tiên
-          if (!foundBookmarkedPage) {
-            alert("Không tìm thấy trang đã đánh dấu. Quay lại trang đầu tiên.");
-            const firstPage = document.querySelector('.page[data-id="bia"]');
-            if (firstPage) {
-              firstPage.scrollIntoView({ behavior: 'smooth' });
-            }
-          }
         } else {
           // Nếu người dùng không muốn tiếp tục, giữ lại trang đầu tiên
           const firstPage = document.querySelector('.page[data-id="bia"]');

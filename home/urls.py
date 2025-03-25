@@ -25,4 +25,5 @@ urlpatterns = [
     path('write_adam/',views.write_adam_page,name="write_adam"),
     path('reading-book/<int:book_id>/',views.reading_page,name="reading_page"),
     path('home-api/', include(router.urls)),
+
 ]

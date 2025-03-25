@@ -3,6 +3,8 @@ from rest_framework.decorators import api_view,permission_classes
 from django.contrib.auth.decorators import login_required
 from rest_framework import status
 from rest_framework.response import Response
+
+from genres.models import GenresModel
 from. serializers import BookSerializers, PageSerializers
 from .models import BookModel, PageModel, ReadingSession
 from rest_framework.permissions import IsAuthenticated
@@ -11,7 +13,11 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from .decorators import check_payment_status
 # Create your views here.
 def home_page(request):
+    sort = request.GET.get("sort")
     books = BookModel.objects.all()
+    if sort:
+        books = BookModel.objects.filter(genres__name = sort)
+        
     context = {
         'books':books
     }
@@ -19,7 +25,12 @@ def home_page(request):
 
 def list_books_page(request):
 
+    sort = request.GET.get("sort")
     books = BookModel.objects.all()
+    if sort:
+        books = BookModel.objects.filter(genres__genres=sort)  # Đúng
+
+        
     context = {
         'books':books
     }
