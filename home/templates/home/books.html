@@ -20,6 +20,20 @@
                 <img src="{% static 'images/bookbkgleft.png' %}" alt="">
                 <img src="{% static 'images/bookbkgright.png' %}" alt="">
                 <div class="books">
+                    <div style="display: flex; justify-content: flex-start; margin-bottom: 20px; padding-left: 20px;">
+                        <form action="" method="get">
+                            <div style="background: #fff; border-radius: 30px; padding: 5px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); transition: 0.3s; display: flex; align-items: center;">
+                                <input type="text" name="keyword" value="{{ keyword }}" placeholder="🔍 Tìm kiếm sách..." aria-label="Search"
+                                    style="border: none; outline: none; flex: 1; padding: 10px 15px; font-size: 16px; border-radius: 30px; background: transparent; "
+                                    onfocus="this.placeholder=''" onblur="this.placeholder='🔍 Tìm kiếm sách...'" />
+                                <button type="submit"
+                                    style="background: #28a745;  border: none; padding: 10px 20px; font-size: 16px; border-radius: 30px; cursor: pointer; transition: 0.3s;">
+                                    Tìm
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
                     {% for book in books %}
                     <a href="{% url 'home:book_detail' book.id %}" class="grimm">
                         <img src="{{book.book_image.url}}" alt="" style="height:15vw;">

@@ -11,6 +11,8 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
 from .decorators import check_payment_status
+from django.db.models import Q
+
 # Create your views here.
 def home_page(request):
     sort = request.GET.get("sort")
@@ -24,13 +26,19 @@ def home_page(request):
     return render(request,"home/home.html",context)
 
 def list_books_page(request):
+    keyword = request.GET.get("keyword")
 
     sort = request.GET.get("sort")
     books = BookModel.objects.all()
     if sort:
         books = BookModel.objects.filter(genres__genres=sort)  # Đúng
 
-        
+    if keyword:
+        books = BookModel.objects.filter(
+            Q(bookname__icontains = keyword)
+            | Q(author__icontains = keyword)
+            
+        ) 
     context = {
         'books':books
     }
