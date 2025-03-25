@@ -9,10 +9,10 @@ class BookModel(models.Model):
     bookname = models.CharField(max_length=200)
     book_image = models.ImageField(upload_to='images/', null=True)
     author = models.TextField(null=True)
-    pages = models.IntegerField()
+    pages = models.IntegerField(null=True)
     price = models.FloatField(null=True)
-    description = models.TextField()
-    published = models.DateField()
+    description = models.TextField(null=True)
+    published = models.DateField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
