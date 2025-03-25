@@ -49,8 +49,8 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const bookmarkedPageId = "{{ bookmarked_page_id }}"; // ID của trang đã đánh dấu lớn nhất từ context Django
-  
-      if (bookmarkedPageId) {
+      console.log(bookmarkedPageId,"books = BookModel.objects.filter(genres__genres=sort)  # Đúng")
+      if (bookmarkedPageId && bookmarkedPageId !== "None") {
         const userConfirmed = confirm("Bạn có muốn tiếp tục đọc từ trang trước đó?");
         if (userConfirmed) {
           // Tìm tất cả các trang
