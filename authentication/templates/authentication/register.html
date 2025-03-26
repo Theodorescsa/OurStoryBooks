@@ -17,8 +17,8 @@
                 {% csrf_token %}
                 <input type="email" placeholder="Email Address" id="email" name="email">
                 <input type="text" placeholder="Username" id="username" name="username">
-                <input type="text" placeholder="Password" id="password" name="password">
-                <input type="text" placeholder="Password again" id="passwordagain" name="password2">
+                <input type="password" placeholder="Password" id="password" name="password">
+                <input type="password" placeholder="Password again" id="passwordagain" name="password2">
 
                 <button id="registerbutton" type="submit">SIGN ME UP&nbsp;&nbsp;&nbsp;</button>
                 <p><a href="{% url 'auth:signin' %}">"Sign In here if you have an account</a></p>

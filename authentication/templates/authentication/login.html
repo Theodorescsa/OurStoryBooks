@@ -12,7 +12,7 @@
             <form action="" method="post">
                 {% csrf_token %}
                 <input type="text" placeholder="Username" id="email" name="username">
-                <input type="text" placeholder="Password" id="password" name="password">
+                <input type="password" placeholder="Password" id="password" name="password">
                 <button type="submit" id="signinbutton">SIGN ME IN&nbsp;&nbsp;&nbsp;</button>
                 <p><a href="{% url 'auth:signup' %}">"Don't have an account yet? Sign Up here</a></p>
 
