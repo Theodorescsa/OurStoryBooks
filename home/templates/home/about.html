@@ -16,6 +16,26 @@
 {% comment %} content start {% endcomment %}
 {% block content %}
     {% load static %}
+    <script>
+        function sendSignup() {
+            let email = document.getElementById("email").value;
+            let first_name = document.getElementById("first_name").value;
+            let last_name = document.getElementById("last_name").value;
+    
+            fetch("/sending-mail/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, first_name, last_name }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message || data.error);
+            })
+            .catch(error => console.error("Error:", error));
+        }
+    </script>
     <link rel="stylesheet" href="{% static 'css/about.css' %}">
         <div class="author">
             <h1 style="font-family: Chez Moustache;">About US</h1>
@@ -69,10 +89,10 @@
                     <div class="box">
                         <img src="{% static 'images/newsletter_header.png' %}" alt="">
                         <div class="form-signup">
-                            <p>Sign up for Us's newsletter by entering your info below:</p>
+                            <p>Sign up for Adam's newsletter by entering your info below:</p>
                             <form action="">
-                                <input type="text" placeholder="Email Address"><input type="text" placeholder="First Name"><input type="text" placeholder="Last Name">
-                                <button>SIGN ME UP&nbsp;&nbsp;&nbsp;</button>
+                                <input type="text" placeholder="Email Address" id="email"><input type="text" placeholder="First Name" id="first_name"><input type="text" placeholder="Last Name" id="last_name">
+                                <button onclick="sendSignup()">SIGN ME UP&nbsp;&nbsp;&nbsp;</button>
                             </form>
                         </div>
                     </div>

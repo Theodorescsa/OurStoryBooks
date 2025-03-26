@@ -102,3 +102,32 @@ def about_page(request):
 def write_adam_page(request):
     return render(request,'home/writeadam.html')
 
+
+from django.shortcuts import render
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+import smtplib
+from email.mime.text import MIMEText
+from .utils import sending_email
+@csrf_exempt  # Tắt CSRF để test nhanh (không nên dùng trong sản phẩm thật)
+def signup_newsletter(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            email = data.get("email")
+            first_name = data.get("first_name")
+            last_name = data.get("last_name")
+
+            if not email:
+                return JsonResponse({"error": "Email là bắt buộc"}, status=400)
+
+            email_body = f"Chào {first_name} {last_name},\n\nCảm ơn bạn đã đăng ký nhận bản tin!"
+            sending_email(email_body, email)
+
+            return JsonResponse({"message": "Đăng ký thành công!"})
+
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=500)
+
+    return JsonResponse({"error": "Chỉ hỗ trợ POST"}, status=405)
