@@ -65,7 +65,7 @@ def payment(request):
             vnp.requestData['vnp_Version'] = '2.1.0'
             vnp.requestData['vnp_Command'] = 'pay'
             vnp.requestData['vnp_TmnCode'] = settings.VNPAY_TMN_CODE
-            vnp.requestData['vnp_Amount'] = amount
+            vnp.requestData['vnp_Amount'] = amount * 100
             vnp.requestData['vnp_CurrCode'] = 'VND'
             vnp.requestData['vnp_TxnRef'] = order_id
             vnp.requestData['vnp_OrderInfo'] = order_desc
@@ -148,7 +148,7 @@ def payment_return(request):
         vnp = vnpay()
         vnp.responseData = inputData.dict()
         order_id = inputData['vnp_TxnRef']
-        amount = int(inputData['vnp_Amount']) / 100
+        amount = int(inputData['vnp_Amount'])
         order_desc = inputData['vnp_OrderInfo']
         vnp_TransactionNo = inputData['vnp_TransactionNo']
         vnp_ResponseCode = inputData['vnp_ResponseCode']
