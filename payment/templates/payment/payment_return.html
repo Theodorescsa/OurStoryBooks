@@ -9,7 +9,7 @@
             <p>vnp_TransactionNo:{{ vnp_TransactionNo }}</p>
             {% if vnp_ResponseCode == '00' %}
                 <p>vnp_ResponseCode: {{ vnp_ResponseCode }} - Thành công</p>
-                <a href="http://theodorescsa.id.vn/books/">Back to list books</a>
+                <a href="http://theodorescsa.id.vn/reading-book/{{book_id}}/">Back to reading book</a>
             {% else %}
                 <p>vnp_ResponseCode: {{ vnp_ResponseCode }} - Lỗi</p>
             {% endif %}

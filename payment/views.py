@@ -168,7 +168,8 @@ def payment_return(request):
                                                                "order_desc": order_desc,
                                                                "vnp_TransactionNo": vnp_TransactionNo,
                                                                "vnp_ResponseCode": vnp_ResponseCode,
-                                                               "status": status
+                                                               "status": status,
+                                                               "book_id": book_id,
                                                                })
             else:
                 return render(request, "payment/payment_return.html", {"title": "Kết quả thanh toán",
